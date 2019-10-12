@@ -103,34 +103,7 @@ function EM_onready() {
   if (window.location.hash == "#return") {
     window.location.hash = "";
 
-    // gradeDebriefingQuestions();
-    $("#example_container").hide();
-    $("#final").hide();
-    $("#instructions1").hide();
-    $("#example_container").hide();
-    $("#playButton").hide();
-    $("#video_container").hide();
-    $(instructions_bg_id).hide();
-    $(mobile_browser_error_id).hide();
-    $(BrowserCheck_div_id).hide();
-    $(window_resized_error_id).hide();
-    $(back_button_id).hide();
-    $(next_button_id).hide();
-    $(instructions_id).hide();
-
-    win_width = $(window).width();
-    win_height = $(window).height();
-    win_center_x = win_width / 2;
-    win_center_y = win_height / 2;
-
-    //hide demographic survey
-
-    $(demographics_div_id).hide();
-    $("#demographics_race_popup").hide();
-    $("#demographics_ethnicity_popup").hide();
-    $("#demographics_sex_popup").hide();
-    $("#demographics_age_popup").hide();
-    $(debriefing_questionairre_div_id).show();
+    gradeDebriefingQuestions();
   } else {
     $("#example_container").hide();
     $("#final").hide();
@@ -195,14 +168,14 @@ function do_instructions1() {
   $(instructions_bg_id).show();
   $(instructions_id).html(
     "<b>Informed Consent Form</b><br><br>" +
-      "Hello, we are the New School for Social Research Perception Lab, and we invite you to take part in the following research study if you are eligible.<br><br>" +
-      "This study concerns perception and attention.  As a subject in the experiment, you will examine a computer display with some simple visual and/or auditory stimuli, and will respond by pressing some keys and/or using the computer mouse.  You may also answer some demographic questions and questions about personality and lifestyle.  Please note that the study is restricted to 18-35 year olds with normal or corrected-to-normal vision.<br><br>The experiment will take approximately [5, 30, 60] minutes, and will involve no discomfort, surprise, or deception.  There are no risks to your health of any kind.  Due to the nature of psychology experiments, we cannot explain the precise purpose of the experiment until after the session is over.  However, afterwards you will receive a debriefing form that explains the research, and the experimenter will also be happy to answer any further questions you might have about the procedure<br><br>" +
+      "<b>Purpose:</b> We are conducting research on visual perception.<br><br>" +
+      "<b>Procedures:</b> This experiment takes about 3 minutes, and it is divided into two parts.  In Part One you will make simple judgments about short EMmations. In Part Two you will answer some questions about the experiment. We will give you specific instructions about how to complete these tasks before they begin.  You will receive $0.20 upon completing the experiment.<br><br>" +
       "(Click the NEXT button to continue.)"
   );
 
   set_object_center(instructions_bg_id, 0, 0);
   set_object_center(instructions_id, 0, 0);
-  set_object_center(next_button_id, 0, 325);
+  set_object_center(next_button_id, 0, 275);
   $(next_button_id).off("click");
   $(back_button_id).off("click");
   $(back_button_id).css("cursor", "pointer");
@@ -214,15 +187,14 @@ function do_instructions1() {
 function do_instructions2() {
   $(instructions_id).html(
     "<b>Informed Consent Form</b><br><br>" +
-      "While you will not directly benefit from taking part in this research study, we hope society will benefit from the knowledge gained.<br><br>" +
-      "The research data will be collected anonymously.  This means we will not have any links between the data and your personally identifiable information (such as an email-address, name, IP address, student number, etc).  But note that despite our best efforts, there is the possibility of intrusion by outside agents (i.e. hacking), particularly when information is shared over the internet.<br><br>" +
-      "Your responses to the stimuli and additional survey questions may be published in an anonomyzed form.  Moreover, an anonymized version of the data from this study may also be made publicly accessible via the Open Science Framework (osf.io; US-hosted), and this without obtaining additional written consent.  Such data sharing is an effort to increase the potential benefit of this research to society, for example by allowing other researchers to compare their results to ours.  In this spirit, the data will be made available indefinitely to any researcher who wants them, and the purpose and scope of this secondary use is not foreseeable.  While this data sharing is anonymous and therefore poses no risks to you, it will also not benefit you directly.  You will not be contacted again about this reuse. <br><br>" +
+      "<b>Risks and Benefits:</b> Completing these tasks poses no more risk of harm to you than do the experiences of everyday life (e.g., from working on a computer). Although this study will not benefit you personally, it will contribute to the advancement of our understanding of perception.<br><br>" +
+      "<b>Confidentiality:</b> All of the responses you provide during this study will be anonymous. You will not be asked to provide any identifying information, such as your name, in any of the questionnaires. Typically, only the researchers involved in this study and those responsible for research oversight will have access to the information you provide. However, we may also share the data with other researchers so that they can check the accuracy of our conclusions; this will not impact you because the data are anonymous.<br><br>" +
       "(Click the NEXT button to continue.)"
   );
 
   set_object_center(instructions_id, 0, 0);
-  set_object_center(next_button_id, 100, 325);
-  set_object_center(back_button_id, -100, 325);
+  set_object_center(next_button_id, 100, 275);
+  set_object_center(back_button_id, -100, 275);
   $(back_button_id).show();
   $(next_button_id).off("click");
   $(back_button_id).off("click");
@@ -233,11 +205,10 @@ function do_instructions2() {
 function do_instructions3() {
   $(instructions_id).html(
     "<b>Informed Consent Form</b><br><br>" +
-      "<b>Questions:</b> If you have any questions about the research study, please contact the researcher:" +
-      "Jim Farlow: jim.farlow@newcastle.edu<br><br>" +
-      "If you have further questions about OSF, please contact them here: https://www.osf-global.com/contact .<br>" +
-      "If you have any questions about your rights as a research subject, or have research related complaints, please contact the Human Protections Administrator, via phone: 646.909.2768, or email: hrpp@newschool.edu<br><br>" +
-      "Taking part in this study is voluntary.  You can stop at any time.  Withdrawal or refusal to participate will not result in any penalty.  You do not waive any legal rights or release The New School or its agents from liability for negligence by consenting to participate.<br><br>" +
+      "<b>Questions:</b> If you have any questions about this study, you may contact us.<br><br>" +
+      "If you would like to talk with someone other than the researchers to discuss problems or concerns, to discuss situations in the event that a member of the research team is not available, or to discuss your rights as a research participant, you may contact:<br><br>" +
+      "<br>" +
+      "" +
       "" +
       "" +
       "(Click the NEXT button to continue.)"
@@ -468,6 +439,57 @@ function do_instructions9() {
 
   //condition = 0;
 
+  if (condition == 0) {
+    document.querySelector("#final_video").src = "padded.mp4";
+    movieName = "padded.mp4";
+    document.querySelector("#example1").src = "padded.mp4";
+    document.querySelector("#example2").src = "padded.mp4";
+    which_quarter = 0;
+    motion_toward_me = 0;
+    match_side = 0; //left
+    overall_flip = 0;
+  } else if (condition == 1) {
+    document.querySelector("#final_video").src = "padded.mp4";
+    movieName = "padded.mp4";
+    document.querySelector("#example1").src = "padded.mp4";
+    document.querySelector("#example2").src = "padded.mp4";
+    which_quarter = 0;
+    motion_toward_me = 0;
+    match_side = 0; //left
+    overall_flip = 0;
+  } else if (condition == 2) {
+    document.querySelector("#final_video").src = "padded.mp4";
+    movieName = "padded.mp4";
+    document.querySelector("#example1").src = "padded.mp4";
+    document.querySelector("#example2").src = "padded.mp4";
+    which_quarter = 0;
+    motion_toward_me = 0;
+    match_side = 0; //left
+    overall_flip = 0;
+  } else if (condition == 3) {
+    document.querySelector("#final_video").src = "padded.mp4";
+    movieName = "padded.mp4";
+    document.querySelector("#example1").src = "padded.mp4";
+    document.querySelector("#example2").src = "padded.mp4";
+    which_quarter = 0;
+    motion_toward_me = 0;
+    match_side = 0; //left
+    overall_flip = 0;
+  } else if (condition == 4) {
+    document.querySelector("#final_video").src = "padded.mp4";
+    movieName = "padded.mp4";
+    document.querySelector("#example1").src = "padded.mp4";
+    document.querySelector("#example2").src = "padded.mp4";
+    which_quarter = 0;
+    motion_toward_me = 0;
+    match_side = 0; //left
+    overall_flip = 0;
+  }
+
+  document.querySelector("#final_video").load();
+  document.querySelector("#example1").load();
+  document.querySelector("#example2").load();
+
   $(next_button_id).off("click");
   $(next_button_id).click(do_task);
   $(back_button_id).click(do_instructions8);
@@ -502,10 +524,35 @@ function showFinal() {
   viewedExample2PreTest = viewedExample2;
   $("#example_container").hide();
   $("#instructions1").html(
-    "<b>Task</b><br><br>You will have only one chance to view the test animation.  Press play when you are ready.</b>"
+    "<b>Task</b><br><br>You will have only one chance to view the test EMmation.  Press play when you are ready.</b>"
   );
   $("#final").show();
 }
+
+// function examplesViewed() {
+
+//     //$(next_button_id).hide();
+//     clearTimeout(showNextButton);
+//   $(next_button_id).click(testViewed);
+//   set_object_center( next_button_id, 0, 240 );
+//     $(next_button_id).show();
+
+//   //if (viewedExample1 > 0 && viewedExample2 > 0 && (Date.now()- movie1_play_time) > 3167 && (Date.now()- movie2_play_time) > 3167){
+//       viewedExample1PreTest =viewedExample1;
+//       viewedExample2PreTest =viewedExample2;
+//     // $("#example_container").hide()
+//     // $("#instructions1").html("<b>Task</b><br><br>You will have only one chance to view the test EMmation.  Press play when you are ready.</b>");
+//     // $("#final").show();
+
+//     //$(next_button_id).hide();
+
+//     time_final_shown = Date.now();
+//   //}
+//    // else{
+//       //pop("popDiv3")
+//   //    bad_subject=1;
+//    // }
+//   }
 
 function showNextButton() {
   // alert("once")
@@ -523,6 +570,43 @@ function showNextButtonAgain() {
   //$(next_button_id).hide();
   $(next_button_id).show();
   //$(next_button_id).click(testViewed);
+}
+
+function testViewed() {
+  // if (viewedFinal == 1 && (Date.now() - final_movie_play_time) > 3.167){
+  $(next_button_id).hide();
+  $("#final").hide();
+  $("#example_container").show();
+  $("#example1ResponseButton").show();
+  $("#example2ResponseButton").show();
+  $("#instructions1").html(
+    "<b>Task</b><br><br>" +
+      "Which of the following did that video most resemble?  If you're not sure, please just give your best guess.</b>"
+  );
+
+  //$(next_button_id).hide()
+
+  // }
+  //   else{
+  //  pop("popDiv3")
+  //   bad_subject=1;
+  //  }
+}
+
+function submitChoice1() {
+  response = 0;
+  RT = Date.now() - time_final_shown;
+  $("#instructions1").hide();
+  $("#example_container").hide();
+  $(debriefing_questionairre_div_id).show();
+}
+
+function submitChoice2() {
+  response = 1;
+  RT = Date.now() - time_final_shown;
+  $("#instructions1").hide();
+  $("#example_container").hide();
+  $(debriefing_questionairre_div_id).show();
 }
 
 function gradeDebriefingQuestions() {
@@ -555,7 +639,7 @@ function gradeDebriefingQuestions() {
   $(debriefing_questionairre_div_id).show();
   var i;
   var formIncomplete = 1;
-  var lengthstrict = 1;
+
   var a1 = document.getElementsByName("dq1");
   formIncomplete = 1;
   for (i = 0; i < a1.length; i++) {
@@ -578,18 +662,18 @@ function gradeDebriefingQuestions() {
   dq7_text = document.getElementById("dq7").value;
 
   if (
-    dq2_text.length >= 20 &&
-    dq3_text.length >= 20 &&
-    dq4_text.length >= 20 &&
-    dq5_text.length >= 20 &&
-    dq6_text.length >= 20 &&
-    dq7_text.length >= 20
+    dq2_text == "" ||
+    dq3_text == "" ||
+    dq4_text == "" ||
+    dq5_text == "" ||
+    dq6_text == "" ||
+    dq7_text == ""
   ) {
-    lengthstrict = 0;
+    formIncomplete = 1;
   }
 
-  if (formIncomplete > 0 || lengthstrict > 0) {
-    pop("popDiv1");
+  if (formIncomplete > 0) {
+    //pop("popDiv1")
   } else {
     completion_code = generate_completion_code();
     $(debriefing_questionairre_div_id).hide();
