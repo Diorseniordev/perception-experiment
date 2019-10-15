@@ -8,7 +8,7 @@ var overall_flip = -1;
 var response = -1;
 var RT = -1;
 var time_final_shown = -1;
-var movieName = -1;
+
 var gender_val = $("#gender_selector").val();
 var age_val = $("#age_selector").val();
 var total_time_elapsed = -1;
@@ -22,22 +22,10 @@ var dq6_text = "NULL";
 var completion_code = 000;
 var movieTimer = 0;
 
-var movie1_play_time;
-
-var movie2_play_time;
-
-var final_movie_play_time;
-
 var bad_subject = 0;
-var viewedExample1 = 0;
-var viewedExample2 = 0;
-var viewedExample1PreTest = 0;
-var viewedExample2PreTest = 0;
-var viewedFinal = 0;
 
 var cgibin_dir; // will get prepended to Python script names; leave as empty string if no such dir
-//  n.b., if it does exist, remember to end with trailing slash!
-//cgibin_dir = "/cgi-bin/";    //for localhost testing
+
 cgibin_dir = ""; //for Dreamhost server
 
 var instructions_id = "#instructions";
@@ -49,7 +37,7 @@ var window_resized_error_id = "#winresized";
 var debriefing_questionairre_div_id = "#debriefing_questionairre_div";
 var mobile_browser_error_id = "#mobilebrowser";
 var BrowserCheck_div_id = "#BrowserCheck_div";
-document.body.style.background = "hsl(0,0%,100%)";
+
 var win_width, win_height;
 var win_resize_trial_invalid = 0;
 var win_center_x, win_center_y;
@@ -104,10 +92,8 @@ function EM_onready() {
     window.location.hash = "";
 
     // gradeDebriefingQuestions();
-    $("#example_container").hide();
-    $("#final").hide();
     $("#instructions1").hide();
-    $("#example_container").hide();
+
     $("#playButton").hide();
     $("#video_container").hide();
     $(instructions_bg_id).hide();
@@ -126,14 +112,11 @@ function EM_onready() {
     //hide demographic survey
 
     $(demographics_div_id).hide();
-    $("#demographics_race_popup").hide();
-    $("#demographics_ethnicity_popup").hide();
+
     $("#demographics_sex_popup").hide();
     $("#demographics_age_popup").hide();
     $(debriefing_questionairre_div_id).show();
   } else {
-    $("#example_container").hide();
-    $("#final").hide();
     $("#instructions1").show();
 
     //some initial task setup code here
@@ -146,8 +129,7 @@ function EM_onready() {
     //hide demographic survey
 
     $(demographics_div_id).hide();
-    $("#demographics_race_popup").hide();
-    $("#demographics_ethnicity_popup").hide();
+
     $("#demographics_sex_popup").hide();
     $("#demographics_age_popup").hide();
 
@@ -316,8 +298,6 @@ function do_instructions5a_validate_input() {
 function do_instructions5b() {
   $(instructions_id).html("");
   $(demographics_div_id).show();
-  attach_popup("#race_selector", "#demographics_race_popup");
-  attach_popup("#ethnicity_selector", "#demographics_ethnicity_popup");
   attach_popup("#gender_selector", "#demographics_sex_popup");
   attach_popup("#age_selector", "#demographics_age_popup");
 
@@ -360,23 +340,13 @@ function do_worker_id_used_error() {
 
 function validate_demographics() {
   //going to just hard-code object IDs here, so sue me...
-  race_val = $("#race_selector").val();
-  ethnicity_val = $("#ethnicity_selector").val();
+
   gender_val = $("#gender_selector").val();
   age_val = $("#age_selector").val();
 
-  if (
-    race_val == "RaceEmpty" ||
-    ethnicity_val == "EthnicityEmpty" ||
-    gender_val == "SexEmpty" ||
-    age_val == "AgeEmpty"
-  ) {
+  if (gender_val == "SexEmpty" || age_val == "AgeEmpty") {
     pop("popDiv1");
-    // alert('None of the values in the demographics form should be left empty! Please try again. If you prefer not to provide your race, ethnicity, or gender, please select "Prefer not to answer." If you believe you have reached this message in error, please email the experimenter.');
   } else {
-    // $.post( cgibin_dir + "EM_log_demographics.py", { workerid: worker_id,
-    //                                                     race: race_val, ethnicity: ethnicity_val,
-    //                                                     gender: gener_val, age: age_val, uas: user_agent_string } );
     do_instructions6();
   }
 }
@@ -474,63 +444,12 @@ function do_instructions9() {
 }
 
 function do_task() {
-  /*set_object_center( next_button_id, 0, 240 );
-  $(next_button_id).off("click");
-  $(next_button_id).click(showFinal);
-  $(next_button_id).hide();
-	$(back_button_id).hide();
-  $(instructions_id).hide();
-  $(instructions_bg_id).hide();*/
-
   do_debrief();
-  /*$("#instructions1").html("<b>Task</b><br><br>" +
-                          "Please play both example videos below as many times as you need, until you feel familiar with them.  After you've viewed both examples at least once, press 'Next' to view a final test video.  You will then say whether the test video looked more like Example 1 or like Example 2.</b>");
-  $("#instructions1").show();
-
-  $("#example_container").show()
-  $("#example1ResponseButton").hide();
-  $("#example2ResponseButton").hide();*/
-}
-
-function showFinal() {
-  $(next_button_id).off("click");
-  $(next_button_id).click(testViewed);
-  $(next_button_id).hide();
-
-  time_final_shown = Date.now();
-  viewedExample1PreTest = viewedExample1;
-  viewedExample2PreTest = viewedExample2;
-  $("#example_container").hide();
-  $("#instructions1").html(
-    "<b>Task</b><br><br>You will have only one chance to view the test animation.  Press play when you are ready.</b>"
-  );
-  $("#final").show();
-}
-
-function showNextButton() {
-  // alert("once")
-  //$(next_button_id).hide();
-
-  $(next_button_id).show();
-  //$(next_button_id).off("click");
-
-  //document.getElementById("next_button_id").innerHTML = "X";
-  //$(next_button_id).click(showFinal);
-}
-
-function showNextButtonAgain() {
-  //alert("again")
-  //$(next_button_id).hide();
-  $(next_button_id).show();
-  //$(next_button_id).click(testViewed);
 }
 
 function gradeDebriefingQuestions() {
-  $("#example_container").hide();
-  $("#final").hide();
   $("#instructions1").hide();
-  $("#example_container").hide();
-  $("#playButton").hide();
+
   $("#video_container").hide();
   $(instructions_bg_id).hide();
   $(mobile_browser_error_id).hide();
@@ -548,8 +467,7 @@ function gradeDebriefingQuestions() {
   //hide demographic survey
 
   $(demographics_div_id).hide();
-  $("#demographics_race_popup").hide();
-  $("#demographics_ethnicity_popup").hide();
+
   $("#demographics_sex_popup").hide();
   $("#demographics_age_popup").hide();
   $(debriefing_questionairre_div_id).show();
@@ -609,7 +527,7 @@ function gradeDebriefingQuestions() {
       overall_flip,
       response,
       RT,
-      movieName,
+
       switchedWindows,
       dq2_text,
       dq3_text,
@@ -635,7 +553,7 @@ function gradeDebriefingQuestions() {
       overall_flip,
       response,
       RT,
-      movieName,
+
       admitted_switching_windows: switchedWindows,
       summarize_instructions: dq2_text,
       clear_enough: dq3_text,
@@ -647,18 +565,6 @@ function gradeDebriefingQuestions() {
     });
 
     do_debriefIndex();
-    /*$(instructions_id).show();
-    $(instructions_bg_id).show();
-
-    $(instructions_id).html('<span style="text-align: center; display: table; font-weight: bold; margin: 0 auto; font-size: 20px; color: black">You\'re all done! Completion code:</span><br><br>' +
-                            '<span style="text-align: center; display: table; font-weight: bold; margin: 0 auto; font-size: 24px; color: black">' + completion_code + "</span><br><br>" +
-                            "Make sure to write down/copy your completion code now, and then click the NEXT button for an explanation of the experiment.");
-
-       $(next_button_id).show(); 
-    $(next_button_id).click(do_debriefIndex); 
-    set_object_center( instructions_bg_id, 0, 0 );
-    set_object_center( instructions_id, 0, 0 );
-    set_object_center( next_button_id, 0, 275 );*/
   }
 }
 
@@ -674,10 +580,8 @@ function do_debrief() {
 }
 
 function do_debriefIndex() {
-  $("#example_container").hide();
-  $("#final").hide();
   $("#instructions1").hide();
-  $("#example_container").hide();
+
   $("#playButton").hide();
   $(mobile_browser_error_id).hide();
   $(BrowserCheck_div_id).hide();
@@ -692,8 +596,7 @@ function do_debriefIndex() {
   //hide demographic survey
 
   $(demographics_div_id).hide();
-  $("#demographics_race_popup").hide();
-  $("#demographics_ethnicity_popup").hide();
+
   $("#demographics_sex_popup").hide();
   $("#demographics_age_popup").hide();
   $(debriefing_questionairre_div_id).hide();
@@ -707,10 +610,9 @@ function do_debriefIndex() {
   );
 
   $(instructions_id).show();
+
   set_object_center(instructions_id, 0, 0);
-  /*$(next_button_id).show();*/
-  /*$(next_button_id).click( do_debrief );
-  set_object_center( next_button_id, 0, 275 );*/
+
   $(next_button_id).off("click");
   $(next_button_id).hide();
 }
@@ -747,6 +649,7 @@ function set_object_center(obj_id, x_coord, y_coord) {
   obj_height = $(obj_id).outerHeight();
   top_coord = y_coord - obj_height / 2 + win_center_y;
   left_coord = x_coord - obj_width / 2 + win_center_x;
+
   $(obj_id).offset({ top: top_coord, left: left_coord });
 }
 

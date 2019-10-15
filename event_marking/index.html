@@ -61,7 +61,7 @@
             // Define Window
              ****************************************/
 
-            let w = new Window("window", "rgb(0,0,20)", "rgb(0,0,0)");
+            let w = new Window("window", "rgb(0,0,0)", "rgb(0,0,0)");
             let globalID = null;
             let currentDisplayFunction = null;
 
@@ -570,7 +570,9 @@
             let minimum_characters_text = new Text({position : [0, -250], text: "You can proceed after typing at least 30 characters", font: "16px Arial"});
 
             recollection_input.keyDownCallback = function(e){
-                recollection_complete_button.enabled = recollection_input.text.length >= 30;
+                let len = (recollection_input.text.match(/[^\n]*\n[^\n]*/gi)||[]).length;
+                // console.log((recollection_input.text.match(/\n/g)||[]).length)
+                recollection_complete_button.enabled = len >= 2;
             };
 
             // Prepare components
