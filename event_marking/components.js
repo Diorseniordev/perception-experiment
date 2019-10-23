@@ -78,7 +78,7 @@ class Window{
             this.isFullScreen = document.mozFullScreen;
             console.log(document.mozFullScreen);
         }
-
+        
         if (this._onfullscreenchange !== null)
             this._onfullscreenchange();
     }
@@ -105,6 +105,7 @@ class Window{
         if(e.target === document.body)
             e.preventDefault();
         this._keyboardBuffer.add(e.code);
+     
         console.log(this._keyboardBuffer);
     }
 

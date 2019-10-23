@@ -178,18 +178,43 @@ function do_instructions1() {
   $(instructions_id).html(
     "<b>Informed Consent Form</b><br><br>" +
       "Hello, we are the New School for Social Research Perception Lab, and we invite you to take part in the following research study if you are eligible.<br><br>" +
-      "This study concerns perception and attention.  As a subject in the experiment, you will examine a computer display with some simple visual and/or auditory stimuli, and will respond by pressing some keys and/or using the computer mouse.  You may also answer some demographic questions and questions about personality and lifestyle.  Please note that the study is restricted to 18-35 year olds with normal or corrected-to-normal vision.<br><br>The experiment will take approximately [5, 30, 60] minutes, and will involve no discomfort, surprise, or deception.  There are no risks to your health of any kind.  Due to the nature of psychology experiments, we cannot explain the precise purpose of the experiment until after the session is over.  However, afterwards you will receive a debriefing form that explains the research, and the experimenter will also be happy to answer any further questions you might have about the procedure<br><br>" +
+      "This study concerns perception and attention.  As a subject in the experiment, you will examine a computer display with some simple visual and/or auditory stimuli, and will respond by pressing some keys and/or using the computer mouse.  You may also answer some demographic questions and questions about personality and lifestyle.  Please note that the study is restricted to 18-35 year olds with normal or corrected-to-normal vision.<br><br>" +
       "(Click the NEXT button to continue.)"
   );
 
   set_object_center(instructions_bg_id, 0, 0);
   set_object_center(instructions_id, 0, 0);
-  set_object_center(next_button_id, 0, 325);
+  set_object_center(next_button_id, 0, 300);
   $(next_button_id).off("click");
   $(back_button_id).off("click");
   $(back_button_id).css("cursor", "pointer");
   $(next_button_id).css("cursor", "pointer");
   $(back_button_id).hide();
+  $(next_button_id).click(do_instructions1a);
+}
+function do_instructions1a() {
+  $("#instructions1").hide();
+  $("#video_container").hide();
+
+  $(back_button_id).show();
+  $(next_button_id).show();
+  $(instructions_id).show();
+  $(instructions_bg_id).show();
+  $(instructions_id).html(
+    "<b>Informed Consent Form</b><br><br>" +
+      "The experiment will take approximately [5, 30, 60] minutes, and will involve no discomfort, surprise, or deception.  There are no risks to your health of any kind.  Due to the nature of psychology experiments, we cannot explain the precise purpose of the experiment until after the session is over.  However, afterwards you will receive a debriefing form that explains the research, and the experimenter will also be happy to answer any further questions you might have about the procedure<br><br>" +
+      "(Click the NEXT button to continue.)"
+  );
+
+  set_object_center(instructions_bg_id, 0, 0);
+  set_object_center(instructions_id, 0, 0);
+  set_object_center(next_button_id, 100, 300);
+  set_object_center(back_button_id, -100, 300);
+  $(next_button_id).off("click");
+  $(back_button_id).off("click");
+  $(back_button_id).css("cursor", "pointer");
+  $(next_button_id).css("cursor", "pointer");
+  $(back_button_id).click(do_instructions1);
   $(next_button_id).click(do_instructions2);
 }
 
@@ -198,18 +223,33 @@ function do_instructions2() {
     "<b>Informed Consent Form</b><br><br>" +
       "While you will not directly benefit from taking part in this research study, we hope society will benefit from the knowledge gained.<br><br>" +
       "The research data will be collected anonymously.  This means we will not have any links between the data and your personally identifiable information (such as an email-address, name, IP address, student number, etc).  But note that despite our best efforts, there is the possibility of intrusion by outside agents (i.e. hacking), particularly when information is shared over the internet.<br><br>" +
+      "(Click the NEXT button to continue.)"
+  );
+
+  set_object_center(instructions_id, 0, 0);
+  set_object_center(next_button_id, 100, 300);
+  set_object_center(back_button_id, -100, 300);
+  $(back_button_id).show();
+  $(next_button_id).off("click");
+  $(back_button_id).off("click");
+  $(next_button_id).click(do_instructions2a);
+  $(back_button_id).click(do_instructions1);
+}
+function do_instructions2a() {
+  $(instructions_id).html(
+    "<b>Informed Consent Form</b><br><br>" +
       "Your responses to the stimuli and additional survey questions may be published in an anonomyzed form.  Moreover, an anonymized version of the data from this study may also be made publicly accessible via the Open Science Framework (osf.io; US-hosted), and this without obtaining additional written consent.  Such data sharing is an effort to increase the potential benefit of this research to society, for example by allowing other researchers to compare their results to ours.  In this spirit, the data will be made available indefinitely to any researcher who wants them, and the purpose and scope of this secondary use is not foreseeable.  While this data sharing is anonymous and therefore poses no risks to you, it will also not benefit you directly.  You will not be contacted again about this reuse. <br><br>" +
       "(Click the NEXT button to continue.)"
   );
 
   set_object_center(instructions_id, 0, 0);
-  set_object_center(next_button_id, 100, 325);
-  set_object_center(back_button_id, -100, 325);
+  set_object_center(next_button_id, 100, 300);
+  set_object_center(back_button_id, -100, 300);
   $(back_button_id).show();
   $(next_button_id).off("click");
   $(back_button_id).off("click");
   $(next_button_id).click(do_instructions3);
-  $(back_button_id).click(do_instructions1);
+  $(back_button_id).click(do_instructions2);
 }
 
 function do_instructions3() {

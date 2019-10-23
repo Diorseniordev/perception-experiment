@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
+    <meta charset="utf-8">
     <title>Perception Experiment</title>
     <style>
       .ontop {
@@ -44,8 +45,10 @@
 
 
     <link rel="stylesheet" type="text/css" href="EM.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
+    <script
+			  src="https://code.jquery.com/jquery-1.10.2.min.js"
+			  integrity="sha256-C6CB9UYIS9UJeqinPHWTHVqh/E1uhG5Twh+Y5qFQmYg="
+			  crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?1.29.1"></script>
     <script type='text/javascript' src="necessary_functions.js"></script>
     <script type='text/javascript' src="pace.min.js"> pace.start(); </script>
@@ -117,15 +120,14 @@
       <p id="instructions1"style="display:none;color:black;text-align:center; font-size: 100%;margin: 0 auto; width: 55em;">
       <br><b>Browser Check </b> <br><br>Press play to view the test animation, then answer the question below.<br><br></p> 
 
-      <button id="playButton" style="color:black; background:lightgray; font-size: 100%;margin: 0 auto; margin-top:1em;" onclick="play()">Play</button><br><br>
+      <button id="playButton" style="color:black; background:lightgray; font-size: 100%;margin: 0 auto; margin-top:1em;" onclick="play()">Play</button><br>
       <div id="video_container" class="video_container">
-        <video id="padded" width="400" height="400" preload="auto">
+        <video id="padded" width="360" height="360" preload="auto">
           <source src="padded.mp4" type="video/mp4">
         </video>
         <br>
       </div>
 
-      <br>
 
       <div id="BrowserCheck_div"style="color:black;text-align:center; font-size: 100%;margin: 0 auto; width: 55em;margin-top:1em;">
         <b>Which of the following best describes the animation you just viewed? </b><br>
